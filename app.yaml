@@ -5,5 +5,8 @@ api_version: 1
 threadsafe: true
 
 handlers:
+- url: /images
+  static_dir: static/imgs
+
 - url: .*
   script: main.app

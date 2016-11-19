@@ -9,18 +9,16 @@ def landing_page():
 	return render_template('landing_page.html')
 
 @app.route('/')
-def user_login():
+def home_page():
     user = users.get_current_user()
     if user:
         nickname = user.nickname()
-        logout_url = users.create_logout_url('/')
-        greeting = 'Welcome, {}! (<a href="{}">sign out</a>)'.format(
-            nickname, logout_url)
+        login_logout_url = users.create_logout_url('/')
     else:
-        login_url = users.create_login_url('/')
-        greeting = '<a href="{}">Sign in</a>'.format(login_url)
+    	nickname = 'Unknown User'
+        login_logout_url = users.create_login_url('/')
 
-    return '<html><body>{}</body></html>'.format(greeting)
+    return render_template('landing_page.html', nickname = 'Unkown User', login_logout_url = login_logout_url)
 
 
 @app.errorhandler(500)

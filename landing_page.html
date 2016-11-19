@@ -1,12 +1,22 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>This is the landing page</title>
+	<title>Go Fuck Yourself</title>
 </head>
 <body>
-	<h1>H</h1>
-	<img src="https://storage.googleapis.com/apppics2/static/i_want_to_touch_your_butt.png">
+	{% if user %}
+		<p> Welcome, {{ nickname }}!
+		You can <a href="{{ login_logout_url }}">sign out</a>.
+		</p>
+
+	{% else %}
+		<p> Welcome, {{ nickname }}.  We would like to get to know you better.
+		<a href="{{ login_logout_url }}">Sign in or register</a> to customize.
+		</p>
+	{% endif %}
+
+	<p>Here is an image for you to view</p>
+	<img src="https://storage.googleapis.com/apppics/i_want_to_touch_your_butt.png" style="width:304px;height:228px;">
 
 </body>
 </html>

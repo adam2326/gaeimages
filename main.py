@@ -1,6 +1,7 @@
 import logging
 from flask import Flask, request, url_for, render_template
 from google.appengine.api import users
+import jinja2
 
 
 app = Flask(__name__)

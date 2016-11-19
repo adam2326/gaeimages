@@ -5,5 +5,9 @@ api_version: 1
 threadsafe: true
 
 handlers:
+- url: /images/.*
+  static_dir: https://storage.googleapis.com/apppics/
 - url: .*
   script: main.app
+  secure: always
+  login: required

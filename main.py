@@ -17,7 +17,7 @@ def home_page():
     	nickname = 'Unknown User'
         login_logout_url = users.create_login_url('/')
 
-    return render_template('landing_page.html', nickname = nickname, login_logout_url = login_logout_url)
+    return render_template('landing_page.html', user = user, nickname = nickname, login_logout_url = login_logout_url)
 
 
 @app.errorhandler(500)

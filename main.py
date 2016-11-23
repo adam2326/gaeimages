@@ -3,6 +3,9 @@ from flask import Flask, request, url_for, render_template
 from google.appengine.api import users
 import jinja2
 import os
+# test these
+import requests
+import json
 
 
 app = Flask(__name__)
@@ -21,11 +24,18 @@ def home_page():
     if user:
         nickname = user.nickname()
         login_logout_url = users.create_logout_url('/')
+        # call an API
+        r = requests.get('https://machine-learning-backend.appspot.com/?_sm_au_=iVV74Q5S62j06SFc')
+        if r.status_code == 200:
+            api_result = json.loads(r.text)
+        else:
+            api_result = 'API_ERROR'
     else:
     	nickname = 'Unknown User'
         login_logout_url = users.create_login_url('/')
+        api_result = ''
 
-    return render_template('landing_page.html', user = user, nickname = nickname, login_logout_url = login_logout_url, app_id = os.environ['APPLICATION_ID'], version_id = os.environ['CURRENT_VERSION_ID'], auth_domain = os.environ['AUTH_DOMAIN'], server_software = os.environ['SERVER_SOFTWARE'])
+    return render_template('landing_page.html', user = user, nickname = nickname, login_logout_url = login_logout_url, app_id = os.environ['APPLICATION_ID'], version_id = os.environ['CURRENT_VERSION_ID'], auth_domain = os.environ['AUTH_DOMAIN'], server_software = os.environ['SERVER_SOFTWARE'], api_result=api_result)
 
 
 @app.errorhandler(500)

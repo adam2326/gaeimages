@@ -33,7 +33,7 @@ def home_page():
     else:
     	nickname = 'Unknown User'
         login_logout_url = users.create_login_url('/')
-        api_result = ''
+        api_result = None
 
     return render_template('landing_page.html', user = user, nickname = nickname, login_logout_url = login_logout_url, app_id = os.environ['APPLICATION_ID'], version_id = os.environ['CURRENT_VERSION_ID'], auth_domain = os.environ['AUTH_DOMAIN'], server_software = os.environ['SERVER_SOFTWARE'], api_result=api_result)
 

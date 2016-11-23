@@ -33,7 +33,7 @@ def home_page():
         if result.status_code == 200:
             api_result = json.loads(result.content)
             # manipulate the response
-            api_result = str([type(result.content), api_result['resp']])
+            api_result = str(type(result.content))
         else:
             api_result = 'API_ERROR'
     else:

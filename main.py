@@ -31,9 +31,9 @@ def home_page():
         #url = 'http://www.google.com/humans.txt'
         result = urlfetch.fetch(url, validate_certificate=True, follow_redirects=False)
         if result.status_code == 200:
-            #api_result = json.loads(result.content)
+            api_result = json.loads(result.content)
             # manipulate the response
-            api_result = str(type(result.content))
+            api_result = api_result['resp']
         else:
             api_result = 'API_ERROR'
     else:

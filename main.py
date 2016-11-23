@@ -26,8 +26,8 @@ def home_page():
         nickname = user.nickname()
         login_logout_url = users.create_logout_url('/')
         ### call an API ###
-        #url = 'https://machine-learning-backend.appspot.com/?_sm_au_=iVV74Q5S62j06SFc'
-        url = 'http://www.google.com/humans.txt'
+        url = 'https://machine-learning-backend.appspot.com/?_sm_au_=iVV74Q5S62j06SFc'
+        #url = 'http://www.google.com/humans.txt'
         result = urlfetch.fetch(url, validate_certificate=True, follow_redirects=False)
         if result.status_code == 200:
             api_result = result.content

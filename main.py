@@ -5,7 +5,6 @@ import jinja2
 import os
 # test these
 import requests
-import json
 
 
 app = Flask(__name__)
@@ -27,7 +26,7 @@ def home_page():
         # call an API
         r = requests.get('https://machine-learning-backend.appspot.com/?_sm_au_=iVV74Q5S62j06SFc')
         if r.status_code == 200:
-            api_result = json.loads(r.text)
+            api_result = r.text
         else:
             api_result = 'API_ERROR'
     else:

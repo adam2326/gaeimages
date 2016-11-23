@@ -1,10 +1,12 @@
+# Python modules
 import logging
 from flask import Flask, request, url_for, render_template
-from google.appengine.api import users
 import jinja2
 import os
-# test these
-import requests
+
+# Google modules
+from google.appengine.api import users
+from google.appengine.api import urlfetch
 
 
 app = Flask(__name__)
@@ -23,10 +25,12 @@ def home_page():
     if user:
         nickname = user.nickname()
         login_logout_url = users.create_logout_url('/')
-        # call an API
-        r = requests.get('https://machine-learning-backend.appspot.com/?_sm_au_=iVV74Q5S62j06SFc')
-        if r.status_code == 200:
-            api_result = r.text
+        ### call an API ###
+        #url = 'https://machine-learning-backend.appspot.com/?_sm_au_=iVV74Q5S62j06SFc'
+        url = 'http://www.google.com/humans.txt'
+        result = urlfetch.fetch(url)
+        if result.status_code == 200:
+            api_result = result.content
         else:
             api_result = 'API_ERROR'
     else:

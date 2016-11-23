@@ -3,6 +3,7 @@ import logging
 from flask import Flask, request, url_for, render_template
 import jinja2
 import os
+import json
 
 # Google modules
 from google.appengine.api import users
@@ -26,11 +27,13 @@ def home_page():
         nickname = user.nickname()
         login_logout_url = users.create_logout_url('/')
         ### call an API ###
-        url = 'https://machine-learning-backend.appspot.com/?_sm_au_=iVV74Q5S62j06SFc'
+        url = 'https://alpha-endpoints1-dot-machine-learning-backend.appspot.com/_ah/api/statisticaltests/v1/ttest?_sm_au_=iVVn5Qn6JqZj24Wr'
         #url = 'http://www.google.com/humans.txt'
         result = urlfetch.fetch(url, validate_certificate=True, follow_redirects=False)
         if result.status_code == 200:
-            api_result = result.content
+            api_result = json.loads(result.content)
+            # manipulate the response
+            api_result = str([type(result.content), api_result['resp']]
         else:
             api_result = 'API_ERROR'
     else:

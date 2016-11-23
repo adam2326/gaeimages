@@ -25,6 +25,9 @@
 	<p>the current auth domain is {{ auth_domain }}</p>
 	<br>
 	<p>the current server software is {{ server_software }}</p>
+	<br>
+	{% if api_result %}
+	    <p>the api result is {{ api_result }}</p>
 
 </body>
 </html>
